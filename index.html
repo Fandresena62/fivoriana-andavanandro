@@ -57,9 +57,9 @@ table.pgt{width:100%;border-collapse:collapse}.pgt>thead{display:table-header-gr
 .pw table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
 .pw th{text-align:left;color:#fff;padding:3px 8px;font-size:11.5px;letter-spacing:.8px;text-transform:uppercase}.pw th.s1{background:#6b747c}.pw th.s2{background:#b4443c}.pw th.s3{background:#b8862b}
 .pw td{padding:3px 8px;border-top:1px solid #dde2ea;vertical-align:middle;overflow-wrap:anywhere;word-break:normal}
-.pm{text-align:center}
-.pm span{display:inline-block;background:#e3e9f3;color:#1f3a5f;border-radius:10px;padding:1px 9px;font-size:11.5px;font-weight:700;white-space:nowrap}
-.pn{font-weight:700;text-transform:uppercase;color:#10243f;border-left:3px solid #c5cfe0;font-size:12.5px}
+.pm{text-align:center;padding-left:3px!important;padding-right:3px!important}
+.pm span{display:inline-block;background:#e3e9f3;color:#1f3a5f;border-radius:10px;padding:1px 7px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.pn{font-weight:700;text-transform:uppercase;color:#10243f;border-left:3px solid #c5cfe0;font-size:12.5px;padding-left:10px!important}
 .pn:empty::after{content:"—";font-weight:400;color:#999}
 }
 </style></head><body>
@@ -139,7 +139,7 @@ function wc0(w,i){
 function pw(w){var R="<small>HERINANDRO</small><b>"+rng(w.d)+"</b>";
  if(w.z)return '<section class="pw pz"><div class="ph"><div>'+R+'</div><div class="pc"><i>'+esc(w.zn||"Tsy misy fivoriana")+'</i></div></div></section>';
  function L(t,m,n,h){return '<tr><td class="pt">'+t+'</td><td class="pm">'+(m?'<span>'+m+' min</span>':'')+'</td><td class="pn">'+esc(n)+(h?' / '+esc(h):'')+'</td></tr>'}
- return '<section class="pw"><div class="ph"><div>'+R+'</div><div class="pc"><small>MPITARI-DRAHARAHA</small><b>'+esc(w.ch||"—")+'</b></div></div><table><colgroup><col style="width:38%"><col style="width:56px"><col></colgroup>'+
+ return '<section class="pw"><div class="ph"><div>'+R+'</div><div class="pc"><small>MPITARI-DRAHARAHA</small><b>'+esc(w.ch||"—")+'</b></div></div><table><colgroup><col style="width:38%"><col style="width:66px"><col></colgroup>'+
  '<tr><th colspan="3" class="s1">Harena avy ao amin’ny Tenin’Andriamanitra</th></tr>'+L("1. "+(esc(w.a.t)||"—"),w.a.m,w.a.w)+L("2. Vatosoa ara-panahy",w.g.m,w.g.w)+L("3. Famakiana Baiboly"+(w.k.t?" — "+esc(w.k.t):""),w.k.m,w.k.w)+
  '<tr><th colspan="3" class="s3">Fampiofanana amin’ny Fanompoana</th></tr>'+w.f.map(function(x,j){return L((4+j)+". "+(esc(x.t)||"—"),x.m,x.w,x.s?x.h:"")}).join("")+
  '<tr><th colspan="3" class="s2">Ny Fiainantsika Kristianina</th></tr>'+w.l.map(function(x,j){return L((4+w.f.length+j)+". "+(esc(x.t)||"—"),x.m,x.w)}).join("")+L((4+w.f.length+w.l.length)+". Fianarana Baiboly",w.b.m,w.b.w)+L("Mpamaky fehitsoratra",0,w.b.r)+L("Vavaka",0,w.v)+'</table></section>'}
