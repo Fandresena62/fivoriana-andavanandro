@@ -46,8 +46,9 @@ details.gd .tp{background:var(--bg);border-left:3px solid var(--acc);border-radi
 @page{size:A4;margin:12mm}
 body{background:#fff;color:#000;padding:0;font-size:13px}#ui,.toast{display:none!important}
 #out{display:block;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-#out header{text-align:center;padding:4px 0 12px;margin-bottom:14px;border-bottom:3px double #1f3a5f}
-#out h1{margin:0;font-size:27px;letter-spacing:3px;color:#1f3a5f}#out header p{margin:3px 0 0;color:#333;font-size:14px}
+table.pgt{width:100%;border-collapse:collapse}.pgt>thead{display:table-header-group}.pgt>tbody>tr>td,.pgt>thead>tr>td{padding:0;border:0}
+#out header{text-align:center;padding:2px 0 8px;margin-bottom:10px;border-bottom:3px double #1f3a5f}
+#out h1{margin:0;font-size:24px;letter-spacing:3px;color:#1f3a5f}#out header p{margin:3px 0 0;color:#333;font-size:14px}
 #out header .mo{display:inline-block;margin-top:8px;background:#1f3a5f;color:#fff;padding:3px 20px;border-radius:20px;letter-spacing:2px;font-weight:700;font-size:14px}
 .pw{break-inside:avoid;border:1.5px solid #1f3a5f;border-radius:9px;overflow:hidden;margin-bottom:12px}
 .ph{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 12px;background:#1f3a5f;color:#fff}
@@ -289,6 +290,7 @@ function guide(){
 <li><b>Ovay ny volana:</b> ampiasao ny boaty volana eo ambony ny lisitra (Fandaharana na Famintinana).</li></ul>`)}
 function render(){
  var h='<div class="top"><h1>Fivoriana Andavanandro<small>FANDAHARAM-PIVORIANA</small></h1><button data-a="undo" '+(UN.length?'':'disabled')+'>↶ Hanafoana</button><button data-a="redo" '+(RD.length?'':'disabled')+'>↷ Hamerina</button><button data-a="pr">🖨 Atonta</button></div>'+
+ '<div class="bar"><input data-f="ch" placeholder="⛪ Anaran’ny fiangonana (hiseho eo an-tampon’ny pejy rehetra rehefa atonta)" value="'+esc(S.c)+'" style="flex:1" aria-label="Anaran’ny fiangonana"></div>'+
  '<div class="tabs"><button data-a="tab" data-v="p" class="'+(V=="p"?'on':'')+'">Fandaharana</button><button data-a="tab" data-v="o" class="'+(V=="o"?'on':'')+'">Olona sy fandrindrana</button><button data-a="tab" data-v="s" class="'+(V=="s"?'on':'')+'">Famintinana</button><button data-a="tab" data-v="t" class="'+(V=="t"?'on':'')+'">📚 Taridalana</button><button data-a="tab" data-v="g" class="'+(V=="g"?'on':'')+'">❓ Toro-lalana</button></div>';
  h+=bnr();
  if(V=="p"){
@@ -297,15 +299,14 @@ function render(){
   if(!any)h+='<p class="hint">Mbola tsy misy herinandro amin’ity volana ity. Tsindrio ny <b>⚡ Mamorona ny volana</b>, dia fenoy ny anarana na tsindrio ny <b>⚙ Zarao ho azy</b>. Ampio aloha ny olona ao amin’ny “Olona sy fandrindrana”. <b>Tsy mahay?</b> Tsindrio ny <b>❓ Toro-lalana</b> eo ambony.</p>';
   h+='<div class="bar"><input type="date" id="nd" value="'+MO+'-01"><button data-a="am">＋ Herinandro</button></div>';
  }else if(V=="s"){h+=sumH()}else if(V=="g"){h+=guide()}else if(V=="t"){h+=libH()}else{
-  h+='<h3>Fiangonana</h3><div class="bar"><input data-f="ch" placeholder="Anaran’ny fiangonana (hiseho amin’ny pirinty)" value="'+esc(S.c)+'" style="flex:1"></div>'+
-  '<h3>Tahiry (backup)</h3><p class="hint">'+(S.bk?'Backup farany: '+S.bk+'.':'Mbola tsy nisy backup.')+' Ampiasao rehefa hanova findainao na hifindra amin’ny olon-kafa.'+(PS===true?' <b>Voaaro amin’ny fanadiovana ho azy ny angona ao amin’ity browser ity.</b>':PS===false?' Tsy nomen’ny browser ny fiarovana ho azy, ka alefaso matetika ny tahiry.':'')+'</p><div class="bar"><button data-a="ex">⬇ Alefaso ny tahiry</button><label class="fl"><input type="file" accept=".json,application/json" data-f="imp" hidden>⬆ Alaina ny tahiry</label></div>'+'<h3>Olona ('+S.p.length+')</h3><p class="hint">Soraty ny anarana (azo atao maromaro miaraka: atao tsipika, faingo na “,”). Fidio ny Lehilahy/Vehivavy isaky ny olona. Esory ny tick amin’ny anjara tsy mbola azon’ilay olona atao (ohatra: tsy mbola mahazo manao ny lahateny 10 min).</p>'+
+  h+='<h3>Tahiry (backup)</h3><p class="hint">'+(S.bk?'Backup farany: '+S.bk+'.':'Mbola tsy nisy backup.')+' Ampiasao rehefa hanova findainao na hifindra amin’ny olon-kafa.'+(PS===true?' <b>Voaaro amin’ny fanadiovana ho azy ny angona ao amin’ity browser ity.</b>':PS===false?' Tsy nomen’ny browser ny fiarovana ho azy, ka alefaso matetika ny tahiry.':'')+'</p><div class="bar"><button data-a="ex">⬇ Alefaso ny tahiry</button><label class="fl"><input type="file" accept=".json,application/json" data-f="imp" hidden>⬆ Alaina ny tahiry</label></div>'+'<h3>Olona ('+S.p.length+')</h3><p class="hint">Soraty ny anarana (azo atao maromaro miaraka: atao tsipika, faingo na “,”). Fidio ny Lehilahy/Vehivavy isaky ny olona. Esory ny tick amin’ny anjara tsy mbola azon’ilay olona atao (ohatra: tsy mbola mahazo manao ny lahateny 10 min).</p>'+
   '<div class="bar"><select id="pg"><option value="M">Lehilahy</option><option value="F">Vehivavy</option></select><input id="pn" placeholder="Anarana…" style="flex:1"><button class="p" data-a="np">＋ Ampio</button></div>';
   S.p.forEach(function(x,i){h+='<div class="pe"><input data-f="pn" data-i="'+i+'" value="'+esc(x)+'"><select data-f="gd" data-i="'+i+'"><option value="M"'+(gx(x)=="M"?' selected':'')+'>Lehilahy</option><option value="F"'+(gx(x)=="F"?' selected':'')+'>Vehivavy</option></select><button class="x" data-a="dpp" data-i="'+i+'">✕</button><div class="ek">'+(gx(x)=="F"?'<span>Vehivavy: anjara Fampiofanana ihany (miaraka amin’ny vehivavy hafa), ary tsy azony atao ny lahateny.</span>':'')+KL.filter(function(q){return gx(x)!="F"||q[0]=="f"}).map(function(q){return '<label><input type="checkbox" data-f="el" data-i="'+i+'" data-k="'+q[0]+'"'+(ok(x,q[0])?' checked':'')+'>'+q[1]+'</label>'}).join("")+'</div></div>'});
  }
  document.getElementById("ui").innerHTML=h;
- var o='<header><h1>FIVORIANA ANDAVANANDRO</h1>'+(S.c?'<p>'+esc(S.c)+'</p>':'')+'<span class="mo">'+MG[+MO.slice(5)-1].toUpperCase()+' '+MO.slice(0,4)+'</span></header>';
+ var hd='<header><h1>FIVORIANA ANDAVANANDRO</h1>'+(S.c?'<p>'+esc(S.c)+'</p>':'')+'<span class="mo">'+MG[+MO.slice(5)-1].toUpperCase()+' '+MO.slice(0,4)+'</span></header>',o='';
  S.w.forEach(function(w){if(inM(w))o+=pw(w)});
- document.getElementById("out").innerHTML=o;
+ document.getElementById("out").innerHTML='<table class="pgt"><thead><tr><td>'+hd+'</td></tr></thead><tbody><tr><td>'+o+'</td></tr></tbody></table>';
 }
 function txt(){var o='*FIVORIANA ANDAVANANDRO*\n'+(S.c?S.c+'\n':'')+'*'+MG[+MO.slice(5)-1].toUpperCase()+' '+MO.slice(0,4)+'*\n';
  function L(t,m,n,h){return '• '+t+(m?' ('+m+' min)':'')+': '+(n||'—')+(h?' / '+h:'')+'\n'}
