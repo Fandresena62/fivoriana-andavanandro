@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="mg"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1f3a5f"><title>Fivoriana Andavanandro</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+:root{--bg:#f3f5f9;--card:#fff;--ink:#1c2433;--mut:#6b7587;--head:#1f3a5f;--line:#d9dfe9;--acc:#2c6fbb;--dng:#c0392b;--s1:#6b747c;--s2:#b4443c;--s3:#b8862b}
+@media(prefers-color-scheme:dark){:root{--bg:#10151e;--card:#182030;--ink:#e8edf6;--mut:#9aa7bb;--head:#2b4a78;--line:#2c3850;--acc:#6aa8ee;--dng:#ff8a80;--s1:#56606a;--s2:#9a3d36;--s3:#8f6a1f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,sans-serif;padding:0 10px calc(24px + env(safe-area-inset-bottom))}
+#ui{max-width:720px;margin:0 auto}
+.top{position:sticky;top:0;z-index:5;background:var(--head);color:#fff;margin:0 -10px 12px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.top h1{font-size:16px;margin:0;flex:1;min-width:150px;letter-spacing:.5px;line-height:1.2}.top small{display:block;font-weight:400;opacity:.8;font-size:11px;letter-spacing:.6px}
+button,select,input{font:inherit;color:inherit}
+button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-height:40px;cursor:pointer}
+button:disabled{opacity:.4}.top button{background:#ffffff1f;border-color:#ffffff40;color:#fff;padding:6px 10px}
+button.p{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}button.x{color:var(--dng);border-color:var(--dng);padding:4px 9px;min-height:34px}
+input,select{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px;min-height:40px;max-width:100%}
+input:focus,select:focus{outline:2px solid var(--acc);outline-offset:1px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}.tabs button{flex:1;font-weight:600}.tabs .on{background:var(--head);color:#fff;border-color:var(--head)}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px;align-items:center}
+.wk{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden;box-shadow:0 1px 4px #0001}
+.wh{display:flex;gap:8px;align-items:center;padding:10px 12px;background:var(--head);color:#fff;flex-wrap:wrap}
+.wh b{flex:1;min-width:150px}.wh input{min-height:34px;padding:3px 6px;color:var(--ink)}
+.sec{padding:7px 12px;color:#fff;font-weight:700;font-size:13px;letter-spacing:.3px}.s1{background:var(--s1)}.s2{background:var(--s2)}.s3{background:var(--s3)}
+.r{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line)}
+.r:last-child{border-bottom:0}.rt{flex:1 1 100%;font-weight:600}input.rt{border-color:transparent;background:transparent;padding:4px 2px}input.rt:hover{border-color:var(--line)}
+.mn{width:62px;text-align:center}.mu{color:var(--mut);font-size:13px}.r select{flex:1;min-width:130px}
+.r select.dp{border-color:#e0a800;background:#fff6dc;color:#5c4400}
+.ft{padding:8px 12px;border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap}
+.ek{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--mut)}.ek label{display:flex;gap:4px;align-items:center}.ek input{min-height:0;width:auto}
+.pe{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}.pe>input{flex:1}
+.hint{color:var(--mut);font-size:13px;margin:6px 0 12px}h3{margin:16px 0 6px}
+.toast{position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));max-width:480px;margin:auto;background:#1c2433;color:#fff;padding:12px 14px;border-radius:12px;z-index:9;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.toast button{min-height:30px;padding:2px 12px;font-weight:700;color:#1c2433}
+.r select.wn{border-color:var(--dng);background:#c0392b1f}.tabs button{font-size:13px}
+label.fl{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-height:40px;display:inline-flex;align-items:center;cursor:pointer}
+.sm{width:100%;border-collapse:collapse;font-size:13px}.sm th,.sm td{padding:6px 5px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}.sm th{background:var(--head);color:#fff;font-weight:600}.sm td:first-child,.sm th:first-child{text-align:left}.sm .z{color:var(--dng);font-weight:700}
+textarea{font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px;width:100%;min-height:170px}
+details.gd{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
+details.gd summary{padding:12px;font-weight:700;cursor:pointer;list-style-position:inside}
+details.gd .gb{padding:0 14px 12px}details.gd p{margin:6px 0}details.gd ol,details.gd ul{margin:6px 0;padding-left:20px}details.gd li{margin:4px 0}
+details.gd .tp{background:var(--bg);border-left:3px solid var(--acc);border-radius:6px;padding:6px 10px;margin:8px 0;font-size:14px}
+.cl{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:4px}
+#out{display:none}
+@media print{
+@page{size:A4;margin:12mm}
+body{background:#fff;color:#000;padding:0;font-size:13px}#ui,.toast{display:none!important}
+#out{display:block;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#out header{text-align:center;padding:4px 0 12px;margin-bottom:14px;border-bottom:3px double #1f3a5f}
+#out h1{margin:0;font-size:27px;letter-spacing:3px;color:#1f3a5f}#out header p{margin:3px 0 0;color:#333;font-size:14px}
+#out header .mo{display:inline-block;margin-top:8px;background:#1f3a5f;color:#fff;padding:3px 20px;border-radius:20px;letter-spacing:2px;font-weight:700;font-size:14px}
+.pw{break-inside:avoid;border:1.5px solid #1f3a5f;border-radius:9px;overflow:hidden;margin-bottom:12px}
+.ph{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 12px;background:#1f3a5f;color:#fff}
+.ph small{display:block;font-size:9px;letter-spacing:1.5px;opacity:.8;font-weight:400}.ph b{font-size:15px;letter-spacing:.3px}.pc{text-align:right}
+.pz .ph{background:#6b747c}.pz .ph i{font-style:normal;font-weight:600}
+.pw table{width:100%;border-collapse:collapse;font-size:13.5px}
+.pw th{text-align:left;color:#fff;padding:4px 12px;font-size:11.5px;letter-spacing:.8px;text-transform:uppercase}.pw th.s1{background:#6b747c}.pw th.s2{background:#b4443c}.pw th.s3{background:#b8862b}
+.pw td{padding:5px 12px;border-top:1px solid #dde2ea;vertical-align:middle}
+.pt{width:52%}.pm{width:72px;text-align:center}
+.pm span{display:inline-block;background:#e3e9f3;color:#1f3a5f;border-radius:10px;padding:1px 9px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.pn{font-weight:700;text-transform:uppercase;color:#10243f;border-left:3px solid #c5cfe0}
+.pn:empty::after{content:"—";font-weight:400;color:#999}
+}
+</style></head><body>
+<div id="ui"></div><div id="out"></div>
+<script>
+var K="fivoriana-v1",MG=["Janoary","Febroary","Martsa","Aprily","May","Jona","Jolay","Aogositra","Septambra","Oktobra","Novembre","Desambra"],
+AB=["JAN.","FEB.","MARTS","APR.","MAY","JONA","JOL.","AOG.","SEPT.","OKT.","NOV.","DES."];
+var S=(function(){try{var s=JSON.parse(localStorage.getItem(K));if(s&&s.w){s.x=s.x||{};return s}}catch(e){}
+ var p=[];try{var o=JSON.parse(localStorage.getItem("anjara-v1"));if(o&&o.p)p=o.p.filter(function(x){return x.g!="A"}).map(function(x){return x.n})}catch(e){}
+ return {p:p,w:[],c:"",x:{},gd:{}}})(),UN=[],RD=[],V="p",now=new Date(),MO=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0");
+function nz(){if(!S.gd)S.gd={};S.w.forEach(function(w){if(!w.k)w.k={t:"",m:4,w:""};if(!w.f)w.f=[{t:"",m:3,w:""},{t:"",m:3,w:""},{t:"",m:4,w:""}]})}nz();
+function kn(k){return k.charAt(0)=="f"?"f":k}
+function cm(n,k,w){if(k=="r")return 0;var mo=w.d.slice(0,7),c=0,kk=kn(k);S.w.forEach(function(x){if(x.z||x.d.slice(0,7)!=mo)return;sl(x).forEach(function(q){if(kn(q[0])==kk&&q[1][q[2]]==n)c++})});return c}
+function gx(n){return S.gd&&S.gd[n]=="F"?"F":"M"}
+function ok(n,k){if(gx(n)=="F"&&k!="f"&&k!="fh")return false;var q=(k=="fo"||k=="fh")?"f":k,x=(S.x||{})[n];return !(x&&x.indexOf(q)>=0)}
+var KL=[["a","Lahateny 10 min"],["g","Vatosoa ara-panahy"],["k","Famakiana Baiboly"],["f","Fampiofanana"],["l","Fiainantsika"],["b","Fianarana Baiboly"],["r","Mpamaky fehitsoratra"],["v","Vavaka"],["ch","Mpitari-draharaha"]];
+function esc(t){return String(t==null?"":t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+function snap(){UN.push(JSON.stringify(S));if(UN.length>30)UN.shift();RD=[]}
+function undo(){var u=UN.pop();if(!u)return;RD.push(JSON.stringify(S));if(RD.length>30)RD.shift();S=JSON.parse(u);nz();save();render();toast("Naverina ny teo aloha.","↷ Hamerina",redo)}
+function redo(){var u=RD.pop();if(!u)return;UN.push(JSON.stringify(S));S=JSON.parse(u);nz();save();render();toast("Naverina ny nofoanana.","↶ Hanafoana",undo)}
+function toast(m,l,f){var e=document.createElement("div");e.className="toast";e.textContent=m;
+ if(l){var b=document.createElement("button");b.textContent=l;b.onclick=function(){f();e.remove()};e.appendChild(b)}
+ document.body.appendChild(e);setTimeout(function(){e.remove()},l?9000:3000)}
+function p2(n){return String(n).padStart(2,"0")}
+function dt(i){return new Date(i+"T00:00:00")}
+function iso(d){return d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate())}
+function mon(i){var d=dt(i);d.setDate(d.getDate()-(d.getDay()+6)%7);return iso(d)}
+function rng(i){var a=dt(i),b=dt(i);b.setDate(b.getDate()+6);
+ return a.getMonth()==b.getMonth()?a.getDate()+" - "+b.getDate()+" "+MG[a.getMonth()].toUpperCase():a.getDate()+" "+AB[a.getMonth()]+" - "+b.getDate()+" "+MG[b.getMonth()].toUpperCase()}
+function nw(d){return {d:d,ch:"",a:{t:"",m:10,w:""},g:{m:10,w:""},k:{t:"",m:4,w:""},f:[{t:"",m:3,w:""},{t:"",m:3,w:""},{t:"",m:4,w:""}],l:[{t:"",m:15,w:""}],b:{m:30,w:"",r:""},v:""}}
+function srt(){S.w.sort(function(a,b){return a.d<b.d?-1:a.d>b.d?1:0})}
+function inM(w){return w.d.slice(0,7)==MO}
+function sl(w){var r=[["ch",w,"ch"],["a",w.a,"w"],["g",w.g,"w"],["k",w.k,"w"]];w.f.forEach(function(x){r.push([x.o?"fo":"f",x,"w"]);if(x.s&&!x.o)r.push(["fh",x,"h"])});w.l.forEach(function(x){r.push(["l",x,"w"])});r.push(["b",w.b,"w"],["r",w.b,"r"],["v",w,"v"]);return r}
+function ppl(w){return sl(w).map(function(s){return s[1][s[2]]}).filter(Boolean)}
+function gen(){snap();var y=+MO.slice(0,4),mo=+MO.slice(5)-1,n=0;
+ for(var d=1;d<=31;d++){var x=new Date(y,mo,d);if(x.getMonth()!=mo)break;
+  if(x.getDay()==1){var i=iso(x);if(!S.w.some(function(w){return w.d==i})){S.w.push(nw(i));n++}}}
+ srt();save();render();toast(n?n+" herinandro no nampiana.":"Efa misy daholo ny herinandro amin’ity volana ity.",n?"↶ Hanafoana":0,undo)}
+function auto(){var ws=S.w.filter(function(w){return inM(w)&&!w.z}),cnt={},days={},last={},um={},n=0;
+ function dd(w){return Math.round(dt(w.d).getTime()/864e5)}
+ ws.forEach(function(w){sl(w).forEach(function(s){var v=s[1][s[2]];if(v){um[kn(s[0])+"|"+v]=1;cnt[v]=(cnt[v]||0)+1;(days[v]=days[v]||[]).push(dd(w))}})});
+ var m0=MO+"-01",lim=iso(new Date(dt(m0).getTime()-35*864e5));
+ S.w.forEach(function(w){if(!w.z&&w.d<m0&&w.d>=lim)sl(w).forEach(function(s){var v=s[1][s[2]];if(v)(days[v]=days[v]||[]).push(dd(w))})});
+ ws.forEach(function(w){var used={};ppl(w).forEach(function(v){used[v]=1});
+  var SL=sl(w);for(var qi=0;qi<SL.length;qi++){var s=SL[qi];if(s[1][s[2]])continue;var best=null,bs=1e9;
+   S.p.forEach(function(x){if(used[x]||!ok(x,s[0])||(w.u||[]).indexOf(x)>=0||(s[0]!="r"&&um[kn(s[0])+"|"+x])||(s[0]=="fh"&&s[1].w&&gx(x)!=gx(s[1].w)))return;var md=99;(days[x]||[]).forEach(function(y){md=Math.min(md,Math.abs(y-dd(w)))});
+    var sc=(cnt[x]||0)*10+(md<=10?(11-md)*2:0)+(last[s[0]]==x?6:0);if(sc<bs){bs=sc;best=x}});
+   if(best){s[1][s[2]]=best;used[best]=1;cnt[best]=(cnt[best]||0)+1;(days[best]=days[best]||[]).push(dd(w));last[s[0]]=best;um[kn(s[0])+"|"+best]=1;n++;if(s[2]=="w"&&s[0].charAt(0)=="f"&&gx(best)=="F"&&!s[1].s){s[1].s=true;SL.splice(qi+1,0,["fh",s[1],"h"])}}}});
+ return n}
+function sel(v,a,w,t,g){var o='<option value="">— Fidio —</option>',f=0;
+ S.p.forEach(function(n){if(n==v)f=1;else if(!ok(n,t)||(w.u||[]).indexOf(n)>=0||(g&&gx(n)!=g)||(n!=v&&cm(n,t,w)>0))return;o+='<option'+(n==v?' selected':'')+'>'+esc(n)+'</option>'});
+ if(v&&!f)o+='<option selected>'+esc(v)+'</option>';
+ var ab=v&&(w.u||[]).indexOf(v)>=0,bad=v&&(!ok(v,t)||(g&&gx(v)!=g)),du=v&&ppl(w).filter(function(x){return x==v}).length>1,rp=v&&cm(v,t,w)>1;
+ return '<select '+a+(ab||bad?' class="wn" title="'+(ab?'Voalaza fa tsy eo amin’ity herinandro ity':'Tsy mety amin’ity anjara ity (tsy mbola mahazo, lahy/vavy tsy mitovy, na anjara ho an’ny lehilahy)')+'"':du||rp?' class="dp" title="'+(du?'Efa manana anjara hafa amin’ity herinandro ity':'Efa nahazo anjara mitovy amin’ity volana ity')+'"':'')+'>'+o+'<option value="__o">✎ Hafa…</option></select>'}
+function F(i,k){return 'data-f="v" data-i="'+i+'" data-k="'+k+'"'}
+function mn(i,k,m){return '<input class="mn" type="number" min="1" inputmode="numeric" '+F(i,k)+' value="'+(m||"")+'"><span class="mu">min</span>'}
+function zc(w,i){return '<div class="wk"><div class="wh"><b>Herinandron’ny '+rng(w.d)+'</b><input type="date" data-f="d" data-i="'+i+'" value="'+w.d+'" aria-label="Daty"><button class="x" data-a="dw" data-i="'+i+'" title="Manala herinandro">✕</button></div><div class="r"><input class="rt" '+F(i,"zn")+' placeholder="Tsy misy fivoriana — antony (ohatra: Fivoriambe)…" value="'+esc(w.zn)+'"><button data-a="zz" data-i="'+i+'">↺ Averina ny fivoriana</button></div></div>'}
+function ur(w,i){var u=w.u||[],o='<option value="">＋ Ampio…</option>';S.p.forEach(function(n){if(u.indexOf(n)<0)o+='<option>'+esc(n)+'</option>'});
+ return '<div class="r"><div class="rt">Tsy eo amin’ity herinandro ity</div>'+u.map(function(n,j){return '<button class="x" data-a="du" data-i="'+i+'" data-j="'+j+'" title="Esory">'+esc(n)+' ✕</button>'}).join("")+'<select data-f="ua" data-i="'+i+'">'+o+'</select></div>'}
+function wc(w,i){return w.z?zc(w,i):wc0(w,i)}
+function wc0(w,i){
+ var h='<div class="wk"><div class="wh"><b>Herinandron’ny '+rng(w.d)+'</b><input type="date" data-f="d" data-i="'+i+'" value="'+w.d+'" aria-label="Daty"><button class="x" data-a="dw" data-i="'+i+'" title="Manala herinandro">✕</button></div>'+
+ '<div class="r"><div class="rt">Mpitari-draharaha</div>'+sel(w.ch,F(i,"ch"),w,"ch")+'</div>'+
+ '<div class="sec s1">Harena avy ao amin’ny Tenin’Andriamanitra</div>'+
+ '<div class="r"><input class="rt" '+F(i,"a.t")+' placeholder="1. Lohatenin’ny anjara…" value="'+esc(w.a.t)+'">'+mn(i,"a.m",w.a.m)+sel(w.a.w,F(i,"a.w"),w,"a")+'</div>'+
+ '<div class="r"><div class="rt">2. Vatosoa ara-panahy</div>'+mn(i,"g.m",w.g.m)+sel(w.g.w,F(i,"g.w"),w,"g")+'</div>'+
+ '<div class="r"><input class="rt" '+F(i,"k.t")+' placeholder="3. Famakiana Baiboly — andininy (ohatra: Je 40:1-10)" value="'+esc(w.k.t)+'">'+mn(i,"k.m",w.k.m)+sel(w.k.w,F(i,"k.w"),w,"k")+'</div>'+
+ '<div class="sec s3">Fampiofanana amin’ny Fanompoana</div>';
+ w.f.forEach(function(x,j){h+='<div class="r"><input class="rt" '+F(i,"f."+j+".t")+' placeholder="'+(4+j)+'. Lohatenin’ny anjara (ohatra: Miresadresaha Aloha)…" value="'+esc(x.t)+'">'+mn(i,"f."+j+".m",x.m)+sel(x.w,F(i,"f."+j+".w"),w,x.o?"fo":"f")+(x.s&&!x.o?'<span class="mu">mpanampy:</span>'+sel(x.h,F(i,"f."+j+".h"),w,"fh",x.w?gx(x.w):""):'')+'<div class="ek"><label><input type="checkbox" data-f="fo" data-i="'+i+'" data-j="'+j+'"'+(x.o?' checked':'')+'> Lehilahy ihany (lahateny)</label><label><input type="checkbox" data-f="fs" data-i="'+i+'" data-j="'+j+'"'+(x.s?' checked':'')+(x.o?' disabled':'')+'> Misy mpanampy</label></div>'+(w.f.length>1?'<button class="x" data-a="df" data-i="'+i+'" data-j="'+j+'" title="Manala anjara">✕</button>':'')+'</div>'});
+ h+='<div class="sec s2">Ny Fiainantsika Kristianina</div>';
+ w.l.forEach(function(x,j){h+='<div class="r"><input class="rt" '+F(i,"l."+j+".t")+' placeholder="'+(4+w.f.length+j)+'. Lohatenin’ny anjara…" value="'+esc(x.t)+'">'+mn(i,"l."+j+".m",x.m)+sel(x.w,F(i,"l."+j+".w"),w,"l")+(w.l.length>1?'<button class="x" data-a="dl" data-i="'+i+'" data-j="'+j+'" title="Manala anjara">✕</button>':'')+'</div>'});
+ return h+'<div class="r"><div class="rt">'+(4+w.f.length+w.l.length)+'. Fianarana Baiboly</div>'+mn(i,"b.m",w.b.m)+sel(w.b.w,F(i,"b.w"),w,"b")+'</div>'+
+ '<div class="r"><div class="rt">Mpamaky fehitsoratra</div>'+sel(w.b.r,F(i,"b.r"),w,"r")+'</div>'+
+ '<div class="r"><div class="rt">Vavaka</div>'+sel(w.v,F(i,"v"),w,"v")+'</div>'+
+ ur(w,i)+'<div class="ft"><button data-a="af" data-i="'+i+'">＋ Anjara Fampiofanana</button><button data-a="al" data-i="'+i+'">＋ Anjara Fiainantsika</button><button data-a="zz" data-i="'+i+'">⛔ Tsy misy fivoriana</button></div></div>'}
+function pw(w){var R="<small>HERINANDRO</small><b>"+rng(w.d)+"</b>";
+ if(w.z)return '<section class="pw pz"><div class="ph"><div>'+R+'</div><div class="pc"><i>'+esc(w.zn||"Tsy misy fivoriana")+'</i></div></div></section>';
+ function L(t,m,n,h){return '<tr><td class="pt">'+t+'</td><td class="pm">'+(m?'<span>'+m+' min</span>':'')+'</td><td class="pn">'+esc(n)+(h?' / '+esc(h):'')+'</td></tr>'}
+ return '<section class="pw"><div class="ph"><div>'+R+'</div><div class="pc"><small>MPITARI-DRAHARAHA</small><b>'+esc(w.ch||"—")+'</b></div></div><table>'+
+ '<tr><th colspan="3" class="s1">Harena avy ao amin’ny Tenin’Andriamanitra</th></tr>'+L("1. "+(esc(w.a.t)||"—"),w.a.m,w.a.w)+L("2. Vatosoa ara-panahy",w.g.m,w.g.w)+L("3. Famakiana Baiboly"+(w.k.t?" — "+esc(w.k.t):""),w.k.m,w.k.w)+
+ '<tr><th colspan="3" class="s3">Fampiofanana amin’ny Fanompoana</th></tr>'+w.f.map(function(x,j){return L((4+j)+". "+(esc(x.t)||"—"),x.m,x.w,x.s?x.h:"")}).join("")+
+ '<tr><th colspan="3" class="s2">Ny Fiainantsika Kristianina</th></tr>'+w.l.map(function(x,j){return L((4+w.f.length+j)+". "+(esc(x.t)||"—"),x.m,x.w)}).join("")+L((4+w.f.length+w.l.length)+". Fianarana Baiboly",w.b.m,w.b.w)+L("Mpamaky fehitsoratra",0,w.b.r)+L("Vavaka",0,w.v)+'</table></section>'}
+var IMP=false,IT="";
+var MX=[["jan",0],["feb",1],["mar",2],["apr",3],["mey",4],["may",4],["jon",5],["jun",5],["jol",6],["jul",6],["aog",7],["aug",7],["sep",8],["okt",9],["oct",9],["nov",10],["des",11],["dec",11]];
+function mIdx(t){t=t.toLowerCase();if(t.length>10)return -1;for(var i=0;i<MX.length;i++)if(t.indexOf(MX[i][0])==0)return MX[i][1];return -1}
+function pDL(s){if(!s||s.length>50||/min/i.test(s))return null;
+ var chk=s.replace(/[A-Za-zÀ-ÿ]+/g,function(w){return mIdx(w)>=0?"":w}).replace(/[\d\s\-–—.,]/g,"");if(chk)return null;
+ var re=/(\d{1,2})|([A-Za-zÀ-ÿ]+)/g,m,nums=[],mos=[];
+ while((m=re.exec(s))){if(m[1])nums.push({v:+m[1],p:m.index});else mos.push({v:mIdx(m[2]),p:m.index})}
+ if(!nums.length||!mos.length||nums[0].v<1||nums[0].v>31)return null;
+ var n=nums[0],bf=mos.filter(function(x){return x.p<n.p});
+ return {d:n.v,m:(bf.length?bf[0]:mos[0]).v}}
+function parseWB(text,ry,rm){
+ var L=text.replace(/\r/g,"").replace(/\u00a0/g," ").split("\n").map(function(x){return x.trim()}).filter(Boolean);
+ var ref=new Date(ry,rm,15).getTime(),W=[],cur=null,sec=0;
+ for(var i=0;i<L.length;i++){var s=L[i],dl=pDL(s);
+  if(dl){var best=null,bd=1e18;[ry-1,ry,ry+1].forEach(function(y){var d=new Date(y,dl.m,dl.d);if(d.getMonth()!=dl.m)return;var df=Math.abs(d.getTime()-ref);if(df<bd){bd=df;best=d}});
+   if(best&&bd<1.2e10){cur={d:mon(iso(best)),P:[]};sec=0;W.push(cur)}continue}
+  if(!cur)continue;
+  var mm=/^(\d{1,2})\s*[.)]\s*(.+)$/.exec(s);
+  if(!mm){if(s.length<70&&s.indexOf("(")<0){var lc=s.toLowerCase();if(/harena/.test(lc))sec=1;else if(/fampiofanana/.test(lc))sec=2;else if(/fiainantsika/.test(lc))sec=3}continue}
+  var rest=mm[2],t,mi=0,tail="",q=/^(.*?)\s*\(\s*(\d+)\s*min[^)]*\)\s*(.*)$/i.exec(rest);
+  if(q){t=q[1];mi=+q[2];tail=q[3]}
+  else{var nx=L[i+1]&&/^\(?\s*(\d+)\s*min[^)]*\)?\s*(.*)$/i.exec(L[i+1]);if(nx){t=rest;mi=+nx[1];tail=nx[2];i++}}
+  if(!mi)continue;
+  t=t.replace(/^[“"«]+|[”"»]+$/g,"").trim();
+  cur.P.push({n:+mm[1],t:t,m:mi,k:tail.replace(/\s*\([^)]*\)\s*$/,"").trim(),s:sec})}
+ return W}
+function bld(c){var P=c.P,r={d:c.d,a:null,g:null,k:null,f:[],l:[],b:null},hasH=P.some(function(p){return p.s>0}),T=[],prev=0;
+ P.forEach(function(p){var s=p.s;
+  if(!hasH){s=p.n<=3?1:((prev==1||prev==2)&&p.m<=8?2:3);prev=s}
+  if(s==1)T.push(p);else if(s==2)r.f.push(p);else if(s==3)r.l.push(p)});
+ r.a=T[0]||null;r.g=T[1]||null;r.k=T[2]||null;
+ if(r.l.length&&(r.l.length>1||/fianarana/i.test(r.l[r.l.length-1].t)))r.b=r.l.pop();
+ return r}
+function applyWB(ws){snap();var add=0,upd=0;
+ ws.forEach(function(c){var w=S.w.filter(function(x){return x.d==c.d})[0];if(!w){w=nw(c.d);S.w.push(w);add++}else upd++;
+  if(c.a){w.a.t=c.a.t;w.a.m=c.a.m}
+  if(c.g)w.g.m=c.g.m;
+  if(c.k){if(c.k.k)w.k.t=c.k.k;w.k.m=c.k.m}
+  if(c.f.length)w.f=c.f.map(function(p,j){var o=w.f[j]||{},x={t:p.t,m:p.m,w:o.w||""};if(/lahateny/i.test(p.t))x.o=true;else if(o.s){x.s=o.s;x.h=o.h||""}return x});
+  if(c.l.length)w.l=c.l.map(function(p,j){var o=w.l[j]||{};return {t:p.t,m:p.m,w:o.w||""}});
+  if(c.b)w.b.m=c.b.m});
+ srt();if(!ws.some(function(c){return c.d.slice(0,7)==MO}))MO=ws[0].d.slice(0,7);
+ save();render();toast(ws.length+" herinandro voafenoina ("+add+" vaovao, "+upd+" nohavaozina).","↶ Hanafoana",undo)}
+function doImp(){var t=IT.trim();if(!t){toast("Apetaho aloha ny lahatsoratra.");return}
+ var ws=parseWB(t,+MO.slice(0,4),+MO.slice(5)-1).map(bld).filter(function(c){return c.a||c.g||c.k||c.f.length||c.l.length||c.b});
+ if(!ws.length){toast("Tsy hita ny daty na ny anjara. Ampidiro miaraka amin’ny andalana misy ny daty (ohatra: 27 OKTOBRA - 2 NOVAMBRA).");return}
+ libAdd(t,ws);IMP=false;IT="";applyWB(ws)}
+function lsg(k){try{return localStorage.getItem(k)||""}catch(e){return ""}}
+function lss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function impFetch(){var u=lsg("fv-link").trim(),w=lsg("fv-worker").trim().replace(/\/+$/,"");if(w&&!/^https?:\/\//i.test(w))w="https://"+w;if(u&&!/^https?:\/\//i.test(u))u="https://"+u;
+ if(!u||!w){toast("Fenoy ny rohy sy ny adiresin’ny Worker.");return}
+ toast("Mangataka avy amin’ny jw.org…");
+ fetch(w+"/?url="+encodeURIComponent(u)).then(function(r){if(!r.ok)throw new Error(r.status);return r.text()}).then(function(t){IT=t;doImp()}).catch(function(){toast("Tsy azo nalaina. Jereo ny rohy sy ny Worker, na apetaho ny lahatsoratra.")})}
+function libG(){try{return JSON.parse(localStorage.getItem("fv-lib"))||[]}catch(e){return []}}
+function libS(a){try{localStorage.setItem("fv-lib",JSON.stringify(a));return true}catch(e){toast("Tsy voatahiry ny taridalana (feno ny toerana ao amin’ny findainao).");return false}}
+function dlb(i){var d=dt(i);return d.getDate()+" "+MG[d.getMonth()]+" "+d.getFullYear()}
+function libAdd(text,ws){var ds=ws.map(function(c){return c.d}).sort(),f=ds[0],l=ds[ds.length-1],md=ds[Math.floor(ds.length/2)],
+ n=dlb(f)+" → "+dlb(l),a=libG().filter(function(x){return x.n!=n});
+ a.unshift({id:String(Date.now()),n:n,y:+md.slice(0,4),m:+md.slice(5,7)-1,c:ws.length,s:iso(new Date()),t:text});libS(a)}
+function libRef(id){var e=libG().filter(function(x){return x.id==id})[0];if(!e)return;
+ var ws=parseWB(e.t,e.y,e.m).map(bld).filter(function(c){return c.a||c.g||c.k||c.f.length||c.l.length||c.b});
+ if(!ws.length){toast("Tsy hita ny daty ao amin’io taridalana io.");return}V="p";applyWB(ws)}
+function libDel(id){if(!confirm("Hofafana ao amin’ny lisitra ve io taridalana io? (Tsy mikasika ny fandaharana efa misy.)"))return;libS(libG().filter(function(x){return x.id!=id}));render()}
+function libH(){var a=libG(),h='<p class="hint">Eto ny Taridalana efa nalainao sy nampidirinao. Raha voafafa ny fandaharana efa nofenoina, tsindrio ny <b>↻ Fenoy indray</b> mba hameno indray ny lohateny sy ny minitra. Tsy ovaina ny anarana efa voatendry amin’ny herinandro efa misy.</p><div class="bar"><button class="p" data-a="imp2">📥 Alaivo / Apetaho vaovao</button></div>';
+ if(!a.length)return h+'<p class="hint">Mbola tsy misy taridalana voatahiry. Rehefa mampiditra Taridalana ianao ao amin’ny <b>📥 Apetaho ny Taridalana</b>, dia ho voatahiry eto ho azy.</p>';
+ a.forEach(function(e){h+='<div class="wk" style="padding:12px"><b>'+esc(e.n)+'</b><p class="hint">'+e.c+' herinandro • voatahiry tamin’ny '+esc(e.s)+'</p><div class="bar" style="margin:8px 0 0"><button class="p" data-a="libref" data-id="'+esc(e.id)+'">↻ Fenoy indray</button><button data-a="libdel" data-id="'+esc(e.id)+'">🗑 Fafao</button></div></div>'});
+ return h}
+function impP(){return '<div class="wk" style="padding:12px"><b>Apetaho ny Taridalana ho an’ny Fivoriana</b><p class="hint">Sokafy ny Taridalana ao amin’ny jw.org/mg, dika ny lahatsoratry ny herinandro (azo atao maromaro miaraka) dia apetaho eto. Tsy maintsy tafiditra ny andalana misy ny daty (ohatra: 27 OKTOBRA - 2 NOVAMBRA). Ny lohateny sy ny minitra ihany no soloina; tsy ovaina ny anarana efa voatendry.</p><div class="r" style="margin:8px 0"><input id="iu" class="rt" placeholder="Rohy amin’ny Taridalana ao amin’ny jw.org/mg…" value="'+esc(lsg("fv-link"))+'"></div><div class="r" style="margin:8px 0"><input id="wu" class="rt" placeholder="Adiresin’ny Worker (https://…workers.dev)" value="'+esc(lsg("fv-worker"))+'"></div><div class="bar" style="margin:8px 0"><button class="p" data-a="impfetch">🌐 Alaivo avy amin’ny jw.org</button></div><p class="hint">Na apetaho eto ambany ny lahatsoratra raha tsy mandeha ny rohy.</p><textarea id="ip" placeholder="Apetaho eto ny lahatsoratra…">'+esc(IT)+'</textarea><div class="bar" style="margin:10px 0 0"><button class="p" data-a="impgo">✔ Ampidiro</button><button data-a="impx">Akatona</button></div></div>'}
+var BD=false,PS=null;
+function bnr(){if(BD||(!S.w.length&&!S.p.length))return"";var d=S.bk?Math.floor((dt(iso(new Date())).getTime()-dt(S.bk).getTime())/864e5):9999;if(d<=30)return"";
+ return '<div class="wk" style="padding:10px 12px;border-color:var(--dng)"><b>'+(S.bk?'Efa '+d+' andro no nahatsapa ny backup farany.':'Mbola tsy nisy backup.')+'</b><div class="bar" style="margin:8px 0 0"><button class="p" data-a="ex">⬇ Alefaso ny tahiry</button><button data-a="bx">Tsy izao</button></div></div>'}
+function guide(){
+ function D(t,b,o){return '<details class="gd"'+(o?' open':'')+'><summary>'+t+'</summary><div class="gb">'+b+'</div></details>'}
+ return '<p class="hint">Tsindrio ny lohateny rehetra mba hanokafana ny fanazavana. Araka ny filaharana ny fomba fanaovana azy, hatrany amin’ny fanombohana.</p>'+
+ D('1. Fanombohana (atao indray mandeha)',`<ol>
+<li>Tsindrio ny <b>Olona sy fandrindrana</b>. Soraty ny <b>anaran’ny fiangonana</b> (hiseho amin’ny pirinty).</li>
+<li>Ampio ny <b>olona</b> rehetra: fidio <b>Lehilahy</b> na <b>Vehivavy</b>, soraty ny anarana, dia tsindrio ny <b>＋ Ampio</b>. Azo atao maromaro miaraka ny mampiditra (atao tsipika, faingo na “,”).</li>
+<li>Raha misy olona tsy mbola mahazo manao anjara iray (ohatra ny lahateny 10 min), esory ny <b>tick</b> eo ambanin’ny anarany.</li>
+<li>Miverina any amin’ny <b>Fandaharana</b>, fidio ny volana, dia tsindrio ny <b>⚡ Mamorona ny volana</b>.</li>
+<li>Fenoy ny lohateny amin’ny alalan’ny <b>📥 Apetaho ny Taridalana</b> (fizarana 3), dia ny anarana amin’ny <b>⚙ Zarao ho azy</b> (fizarana 6).</li>
+<li>Jereo sy ahitsio raha ilaina, dia <b>🖨 Atonta</b> na <b>📋 Dika lahatsoratra</b>.</li></ol>`,1)+
+ D('2. Fampidirana olona sy Lehilahy/Vehivavy',`<p>Ao amin’ny <b>Olona sy fandrindrana</b> no ampidirana sy ovaina ny olona.</p><ul>
+<li><b>Lehilahy:</b> afaka manao ny anjara rehetra.</li>
+<li><b>Vehivavy:</b> <b>Fampiofanana amin’ny Fanompoana</b> ihany no azony atao, ary miaraka amin’ny <b>vehivavy hafa</b> foana. Tsy azony atao ny anjara “Lahateny”.</li>
+<li>Ny <b>mpanampy</b> dia tsy maintsy mitovy lahy/vavy amin’ny mpanao anjara: vehivavy miaraka amin’ny vehivavy, lehilahy miaraka amin’ny lehilahy.</li>
+<li>Ovay amin’ny boaty eo akaikin’ny anarana ny Lehilahy/Vehivavy. Ovay koa ny anarana raha diso: miova ho azy ny anjara rehetra misy azy.</li>
+<li>Ny <b>✕</b> dia manala ilay olona.</li></ul>
+<div class="tp">Tsara ny manamarika aloha ny vehivavy rehetra, satria lehilahy no fototra raha tsy voafidy.</div>`)+
+ D('3. Fampidirana ny lohateny avy amin’ny Taridalana (jw.org/mg)',`<ol>
+<li>Sokafy ny <b>Taridalana ho an’ny Fivoriana</b> ao amin’ny <b>jw.org/mg</b> (na ao amin’ny JW Library).</li>
+<li>Tsindrio ela ny lahatsoratra, fidio ny <b>“Select all” (Fidio rehetra)</b>, dia <b>Copy (Dika)</b>. Tsy mila tapahina ny zavatra tsy ilaina.</li>
+<li>Miverena eto, ao amin’ny <b>Fandaharana</b>, tsindrio ny <b>📥 Apetaho ny Taridalana</b>, apetaho ao anaty boaty ny lahatsoratra, dia tsindrio ny <b>✔ Ampidiro</b>.</li></ol>
+<p><b>Inona no mitranga?</b> Mamantatra ny daty ny app (ohatra “27 OKTOBRA - 2 NOVAMBRA”) ary mameno ny lohateny sy ny minitra isaky ny anjara amin’io herinandro io. Raha tsy mbola misy ilay herinandro, dia amoronina ho azy.</p><ul>
+<li>Azo apetaka miaraka ny herinandro maromaro (ohatra ny volana manontolo).</li>
+<li><b>Tsy ovaina</b> ny anarana efa voatendry.</li>
+<li>Ny anjara misy lohateny “Lahateny” dia voatick ho <b>Lehilahy ihany</b> ho azy.</li>
+<li>Mipoitra ho azy ny <b>laharana</b> (1., 2., 3. …).</li></ul>
+<div class="tp">Tsy maintsy tafiditra ao amin’ny lahatsoratra apetaka ny <b>andalana misy ny daty</b>. Raha tsy nahomby, dia dikao indray ny lahatsoratra manomboka amin’ny daty.</div>
+<p>Raha tsy mety ny voafenoina, tsindrio ny <b>↶ Hanafoana</b>. Raha diso ny nanafoanana, tsindrio ny <b>↷ Hamerina</b> mba hamerenana ilay zavatra nofoanana. Miseho ao amin’ny hafatra ambany sy ao ambony ireo bokotra roa ireo.</p>`)+
+ D('4. Herinandro: mamorona, manampy, manala',`<ul>
+<li><b>⚡ Mamorona ny volana</b> dia manampy herinandro iray isaky ny Alatsinainy ao amin’ny volana voafidy.</li>
+<li><b>＋ Herinandro</b> (ambany): fidio ny daty dia tsindrio, raha tianao hanampy herinandro manokana.</li>
+<li>Ovay ny <b>daty</b> eo amin’ny lohan’ny herinandro raha diso: miova ho Alatsinainy amin’io herinandro io ho azy.</li>
+<li><b>✕</b> eo amin’ny lohan’ny herinandro dia manala azy (azo hanafoana).</li></ul>`)+
+ D('5. Anjara: lohateny, minitra, fampiofanana, fiainantsika',`<ul>
+<li>Soraty ao amin’ny andalana ny <b>lohatenin’ny anjara</b> raha tsy avy amin’ny Taridalana. Ovay ny <b>min</b> raha ilaina.</li>
+<li><b>Famakiana Baiboly:</b> soraty ny andininy (ohatra Je 40:1-10).</li>
+<li><b>＋ Anjara Fampiofanana</b> / <b>＋ Anjara Fiainantsika</b>: mampiana anjara. <b>✕</b> eo anilany dia manala azy.</li>
+<li>Ao amin’ny anjara Fampiofanana: tick-o ny <b>Misy mpanampy</b> raha misy mpanampy (voatick ho azy raha vehivavy ny mpanao anjara).</li>
+<li>Tick-o ny <b>Lehilahy ihany (lahateny)</b> raha anjara tsy azon’ny vehivavy atao. Tsy misy mpanampy intsony io anjara io.</li>
+<li>Ny laharana dia mivadika ho azy araka ny isan’ny anjara.</li></ul>`)+
+ D('6. Fizarana ho azy ny anarana (⚙ Zarao ho azy)',`<p>Mameno ny anjara <b>foana</b> amin’ny volana voafidy ny bokotra <b>⚙ Zarao ho azy</b>. Tsy mikasika ny anarana efa nosoratanao.</p><ul>
+<li>Ny olona iray dia <b>tsy mahazo anjara mitovy indroa</b> ao anatin’ny volana iray (afa-tsy ny <b>Mpamaky fehitsoratra</b>).</li>
+<li>Arahina ny <b>Lehilahy/Vehivavy</b> sy ny tick anjara tsy azon’ny olona atao.</li>
+<li>Mitovy lahy/vavy ny mpanampy; lehilahy ihany no ho an’ny “Lahateny”.</li>
+<li>Tsy manome anjara roa amin’ny herinandro iray ho an’ny olona iray; miezaka mizara mitovy ny olona rehetra.</li>
+<li>Tsy tendren’ny app ny olona voalaza ao amin’ny <b>“Tsy eo amin’ity herinandro ity”</b> (fizarana 7).</li>
+<li>Raha <b>tsy ampy olona</b>, dia avela foana ny anjara: ianao no hameno azy.</li></ul>
+<div class="tp">Afaka manova ny anarana rehetra ianao aorian’izay, amin’ny alalan’ny lisitra eo amin’ny anjara tsirairay.</div>`)+
+ D('7. Olona tsy eo sy herinandro tsy misy fivoriana',`<ul>
+<li><b>Tsy eo amin’ity herinandro ity:</b> ao amin’ny herinandro, tsindrio ny <b>＋ Ampio…</b> dia fidio ny olona tsy eo (mitsangana, tsy eto…). Tsy hotendrena izy amin’io herinandro io. Ny <b>✕</b> eo anilany dia mamerina azy.</li>
+<li><b>⛔ Tsy misy fivoriana:</b> ambany ny herinandro. Soraty ny antony (ohatra: Fivoriambe), dia lasa tsy voatendry ny herinandro. <b>↺ Averina ny fivoriana</b> dia mamerina azy.</li></ul>`)+
+ D('8. Dikan’ny loko (fampitandremana)',`<ul>
+<li><span class="cl" style="background:#c0392b"></span><b>Mena:</b> tsy mety ny olona voafidy (voalaza fa tsy eo amin’io herinandro io, tsy mbola mahazo manao an’io anjara io, lahy/vavy tsy mitovy, na anjara ho an’ny lehilahy ihany).</li>
+<li><span class="cl" style="background:#e0a800"></span><b>Mavo:</b> efa manana anjara hafa amin’io herinandro io ilay olona, na efa nahazo anjara mitovy amin’ity volana ity.</li></ul>`)+
+ D('9. Famintinana',`<p>Ny tab <b>Famintinana</b> dia mampiseho ny isan’ny anjara voatendry isaky ny olona amin’ny volana voafidy. Mena ny olona <b>tsy mbola nahazo anjara</b>, ary mena ny isa raha <b>mihoatra ny 1</b> ny anjara mitovy (afa-tsy ny Mpamaky). Ampiasao mba hahitana raha mizara mitovy ny olona.</p>`)+
+ D('10. Pirinty sy fandefasana (🖨 / 📋)',`<ul>
+<li><b>🖨 Atonta:</b> manokatra ny pirinty ny findainao. Fidio ny <b>“Save as PDF”</b> raha tianao ho rakitra PDF. Ny volana voafidy ihany no aseho.</li>
+<li><b>📋 Dika lahatsoratra:</b> mandika ny fandaharana ho lahatsoratra azo apetaka ao amin’ny <b>WhatsApp</b> na hafa.</li></ul>`)+
+ D('11. Backup (tahiry): aza adino!',`<p>Voatahiry ho azy ao anaty findainao ny angona rehetra. Very anefa izany raha <b>fafana ny angon’ny browser</b>, esorina ny app, na <b>miova findainana</b>.</p><ol>
+<li>Ao amin’ny <b>Olona sy fandrindrana</b>, tsindrio ny <b>⬇ Alefaso ny tahiry</b>: misy rakitra .json voatahiry.</li>
+<li>Alefaso any amin’ny Google Drive, WhatsApp na mailaka mba hitahiry azy.</li>
+<li>Hamerenana: <b>⬆ Alaina ny tahiry</b> dia fidio ilay rakitra (misolo ny angona rehetra ao amin’ny findainana).</li></ol>
+<div class="tp">Ataovy isam-bolana, indrindra rehefa avy namita ny fandaharana. Misy fampatsiahivana ambony raha mihoatra ny 30 andro ny backup farany.</div>`)+
+ D('12. Fametrahana amin’ny findainana sy fampiasana offline',`<ol>
+<li>Sokafy amin’ny browser (Chrome na Safari) ny adiresy HTTPS an’ny app.</li>
+<li>Android: menu ⋮ → <b>“Ampio amin’ny efijery fandraisana”</b> / <b>“Install app”</b>. iPhone: bokotra fizarana → <b>“Add to Home Screen”</b>.</li>
+<li>Sokafy <b>indray mandeha miaraka amin’ny internet</b> mba hitahiry ny app. Aorian’izay dia mandeha <b>tsy misy internet</b>.</li></ol>
+<div class="tp">Rehefa misy kinova vaovao, sokafy miaraka amin’ny internet, dia akatony tanteraka ny app ary sokafy indray.</div>`)+
+ D('13. Fanamarihana sy olana mahazatra',`<ul>
+<li><b>Tsy hita ny olona iray amin’ny lisitra:</b> mety efa nahazo anjara mitovy amin’ity volana ity, tsy eo amin’ity herinandro ity, na tsy mahazo manao an’io anjara io (jereo ny tick ao amin’ny Olona sy fandrindrana).</li>
+<li><b>Misy anjara tsy voafeno taorian’ny Zarao ho azy:</b> tsy ampy olona mety. Fenoy tanana na ampio olona.</li>
+<li><b>Tsy voafeno ny Taridalana:</b> jereo raha tafiditra ny andalana misy daty, ary raha misy laharana (1., 2. …) sy minitra (ohatra “10 min.”) ny anjara.</li>
+<li><b>Fahadisoana:</b> tsindrio ny <b>↶ Hanafoana</b>; raha be loatra ny nofoanana, tsindrio ny <b>↷ Hamerina</b>. Mandeha izy raha tsy mbola nakatona ny app.</li>
+<li><b>Ovay ny volana:</b> ampiasao ny boaty volana eo ambony ny lisitra (Fandaharana na Famintinana).</li></ul>`)}
+function render(){
+ var h='<div class="top"><h1>Fivoriana Andavanandro<small>FANDAHARAM-PIVORIANA</small></h1><button data-a="undo" '+(UN.length?'':'disabled')+'>↶ Hanafoana</button><button data-a="redo" '+(RD.length?'':'disabled')+'>↷ Hamerina</button><button data-a="pr">🖨 Atonta</button></div>'+
+ '<div class="tabs"><button data-a="tab" data-v="p" class="'+(V=="p"?'on':'')+'">Fandaharana</button><button data-a="tab" data-v="o" class="'+(V=="o"?'on':'')+'">Olona sy fandrindrana</button><button data-a="tab" data-v="s" class="'+(V=="s"?'on':'')+'">Famintinana</button><button data-a="tab" data-v="t" class="'+(V=="t"?'on':'')+'">📚 Taridalana</button><button data-a="tab" data-v="g" class="'+(V=="g"?'on':'')+'">❓ Toro-lalana</button></div>';
+ h+=bnr();
+ if(V=="p"){
+  h+='<div class="bar"><input type="month" data-f="mo" value="'+MO+'" aria-label="Volana"><button class="p" data-a="gen">⚡ Mamorona ny volana</button><button data-a="auto">⚙ Zarao ho azy</button><button data-a="imp">📥 Apetaho ny Taridalana</button><button data-a="cp">📋 Dika lahatsoratra</button></div>'+(IMP?impP():"");
+  var any=0;S.w.forEach(function(w,i){if(inM(w)){any=1;h+=wc(w,i)}});
+  if(!any)h+='<p class="hint">Mbola tsy misy herinandro amin’ity volana ity. Tsindrio ny <b>⚡ Mamorona ny volana</b>, dia fenoy ny anarana na tsindrio ny <b>⚙ Zarao ho azy</b>. Ampio aloha ny olona ao amin’ny “Olona sy fandrindrana”. <b>Tsy mahay?</b> Tsindrio ny <b>❓ Toro-lalana</b> eo ambony.</p>';
+  h+='<div class="bar"><input type="date" id="nd" value="'+MO+'-01"><button data-a="am">＋ Herinandro</button></div>';
+ }else if(V=="s"){h+=sumH()}else if(V=="g"){h+=guide()}else if(V=="t"){h+=libH()}else{
+  h+='<h3>Fiangonana</h3><div class="bar"><input data-f="ch" placeholder="Anaran’ny fiangonana (hiseho amin’ny pirinty)" value="'+esc(S.c)+'" style="flex:1"></div>'+
+  '<h3>Tahiry (backup)</h3><p class="hint">'+(S.bk?'Backup farany: '+S.bk+'.':'Mbola tsy nisy backup.')+' Ampiasao rehefa hanova findainao na hifindra amin’ny olon-kafa.'+(PS===true?' <b>Voaaro amin’ny fanadiovana ho azy ny angona ao amin’ity browser ity.</b>':PS===false?' Tsy nomen’ny browser ny fiarovana ho azy, ka alefaso matetika ny tahiry.':'')+'</p><div class="bar"><button data-a="ex">⬇ Alefaso ny tahiry</button><label class="fl"><input type="file" accept=".json,application/json" data-f="imp" hidden>⬆ Alaina ny tahiry</label></div>'+'<h3>Olona ('+S.p.length+')</h3><p class="hint">Soraty ny anarana (azo atao maromaro miaraka: atao tsipika, faingo na “,”). Fidio ny Lehilahy/Vehivavy isaky ny olona. Esory ny tick amin’ny anjara tsy mbola azon’ilay olona atao (ohatra: tsy mbola mahazo manao ny lahateny 10 min).</p>'+
+  '<div class="bar"><select id="pg"><option value="M">Lehilahy</option><option value="F">Vehivavy</option></select><input id="pn" placeholder="Anarana…" style="flex:1"><button class="p" data-a="np">＋ Ampio</button></div>';
+  S.p.forEach(function(x,i){h+='<div class="pe"><input data-f="pn" data-i="'+i+'" value="'+esc(x)+'"><select data-f="gd" data-i="'+i+'"><option value="M"'+(gx(x)=="M"?' selected':'')+'>Lehilahy</option><option value="F"'+(gx(x)=="F"?' selected':'')+'>Vehivavy</option></select><button class="x" data-a="dpp" data-i="'+i+'">✕</button><div class="ek">'+(gx(x)=="F"?'<span>Vehivavy: anjara Fampiofanana ihany (miaraka amin’ny vehivavy hafa), ary tsy azony atao ny lahateny.</span>':'')+KL.filter(function(q){return gx(x)!="F"||q[0]=="f"}).map(function(q){return '<label><input type="checkbox" data-f="el" data-i="'+i+'" data-k="'+q[0]+'"'+(ok(x,q[0])?' checked':'')+'>'+q[1]+'</label>'}).join("")+'</div></div>'});
+ }
+ document.getElementById("ui").innerHTML=h;
+ var o='<header><h1>FIVORIANA ANDAVANANDRO</h1>'+(S.c?'<p>'+esc(S.c)+'</p>':'')+'<span class="mo">'+MG[+MO.slice(5)-1].toUpperCase()+' '+MO.slice(0,4)+'</span></header>';
+ S.w.forEach(function(w){if(inM(w))o+=pw(w)});
+ document.getElementById("out").innerHTML=o;
+}
+function txt(){var o='*FIVORIANA ANDAVANANDRO*\n'+(S.c?S.c+'\n':'')+'*'+MG[+MO.slice(5)-1].toUpperCase()+' '+MO.slice(0,4)+'*\n';
+ function L(t,m,n,h){return '• '+t+(m?' ('+m+' min)':'')+': '+(n||'—')+(h?' / '+h:'')+'\n'}
+ S.w.forEach(function(w){if(!inM(w))return;o+='\n📅 *Herinandron’ny '+rng(w.d)+'*\n';if(w.z){o+=(w.zn||'Tsy misy fivoriana')+'\n';return}
+  o+='Mpitari-draharaha: '+(w.ch||'—')+'\n\n*Harena avy ao amin’ny Tenin’Andriamanitra*\n'+L('1. '+(w.a.t||'—'),w.a.m,w.a.w)+L('2. Vatosoa ara-panahy',w.g.m,w.g.w)+L('3. Famakiana Baiboly'+(w.k.t?' — '+w.k.t:''),w.k.m,w.k.w)+'\n*Fampiofanana amin’ny Fanompoana*\n'+w.f.map(function(x,j){return L((4+j)+'. '+(x.t||'—'),x.m,x.w,x.s?x.h:'')}).join('')+'\n*Ny Fiainantsika Kristianina*\n'+w.l.map(function(x,j){return L((4+w.f.length+j)+'. '+(x.t||'—'),x.m,x.w)}).join('')+L((4+w.f.length+w.l.length)+'. Fianarana Baiboly',w.b.m,w.b.w)+L('Mpamaky fehitsoratra',0,w.b.r)+L('Vavaka',0,w.v)});
+ return o}
+function cp(){if(!S.w.some(inM)){toast("Tsy misy herinandro amin’ity volana ity.");return}var t=txt();
+ function fb(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");toast("Voadika ny lahatsoratra.")}catch(e){toast("Tsy afaka nandika.")}a.remove()}
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(function(){toast("Voadika ny lahatsoratra.")},fb);else fb()}
+function exp(){S.bk=iso(new Date());save();var b=new Blob([JSON.stringify(S,null,1)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="fivoriana-"+S.bk+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},4000);render();toast("Voatahiry ny rakitra.")}
+function impf(t){var fl=t.files[0];if(!fl)return;var rd=new FileReader();rd.onload=function(){try{var o=JSON.parse(rd.result);if(!o||!Array.isArray(o.p)||!Array.isArray(o.w))throw 0;
+  if(!confirm("Hosoloana ny angona rehetra ao amin’ity findainao ity ve?"))return;snap();o.x=o.x||{};o.c=o.c||"";S=o;nz();save();render();toast("Voaray ny tahiry.","↶ Hanafoana",undo)}catch(e){toast("Tsy rakitra mety io.")}};rd.readAsText(fl);t.value=""}
+function sumH(){var ws=S.w.filter(function(w){return inM(w)&&!w.z}),c={},C=[["a","10 min"],["g","Vatosoa"],["k","Famakiana"],["f","Fampiof."],["l","Fiainantsika"],["b","Baiboly"],["r","Mpamaky"],["v","Vavaka"],["ch","Mpitari-d."]];
+ ws.forEach(function(w){sl(w).forEach(function(s){var v=s[1][s[2]];if(!v)return;var q=c[v]=c[v]||{t:0},kk=s[0].charAt(0)=="f"?"f":s[0];q[kk]=(q[kk]||0)+1;q.t++})});
+ var nm=S.p.slice();Object.keys(c).forEach(function(n){if(nm.indexOf(n)<0)nm.push(n)});
+ var h='<div class="bar"><input type="month" data-f="mo" value="'+MO+'" aria-label="Volana"></div><p class="hint">Isan’ny anjara voatendry isaky ny olona amin’ity volana ity ('+ws.length+' herinandro). Mena ny tsy mbola nahazo anjara na ny nahazo anjara mitovy mihoatra ny indray mandeha (afa-tsy ny Mpamaky).</p><div style="overflow-x:auto"><table class="sm"><tr><th>Anarana</th>'+C.map(function(q){return '<th>'+q[1]+'</th>'}).join("")+'<th>Jam.</th></tr>';
+ nm.forEach(function(n){var q=c[n]||{t:0};h+='<tr><td>'+esc(n)+'</td>'+C.map(function(k){return '<td'+(q[k[0]]>1&&k[0]!="r"?' class="z"':'')+'>'+(q[k[0]]||"·")+'</td>'}).join("")+'<td'+(q.t?'':' class="z"')+'><b>'+q.t+'</b></td></tr>'});
+ return h+'</table></div>'}
+function setp(o,k,v){var a=k.split(".");for(var i=0;i<a.length-1;i++)o=o[a[i]];var l=a[a.length-1];o[l]=(l=="m")?(parseInt(v,10)||0):v}
+document.addEventListener("click",function(e){var b=e.target.closest("[data-a]");if(!b)return;var a=b.dataset.a,i=+b.dataset.i,j=+b.dataset.j;
+ if(a=="undo")undo();else if(a=="redo")redo();else if(a=="pr")window.print();
+ else if(a=="cp")cp();else if(a=="ex")exp();
+ else if(a=="zz"){snap();S.w[i].z=!S.w[i].z;save();render()}
+ else if(a=="du"){snap();S.w[i].u.splice(j,1);save();render()}
+ else if(a=="tab"){V=b.dataset.v;render()}
+ else if(a=="imp"){IMP=true;render();var e2=document.getElementById("ip");if(e2)e2.focus()}
+ else if(a=="impx"){IMP=false;render()}
+ else if(a=="impgo")doImp();
+ else if(a=="impfetch")impFetch();
+ else if(a=="imp2"){V="p";IMP=true;render()}
+ else if(a=="libref")libRef(b.dataset.id);
+ else if(a=="libdel")libDel(b.dataset.id);
+ else if(a=="bx"){BD=true;render()}
+ else if(a=="gen")gen();
+ else if(a=="auto"){if(!S.p.length){toast("Ampio aloha ny olona ao amin’ny “Olona sy fandrindrana”.");return}snap();var n=auto();if(!n)UN.pop();save();render();n?toast(n+" anjara no voatendry.","↶ Hanafoana",undo):toast("Tsy misy anjara foana azo vatsiana.")}
+ else if(a=="am"){var d=document.getElementById("nd").value;if(!d)return;d=mon(d);if(S.w.some(function(w){return w.d==d})){toast("Efa misy io herinandro io.");return}snap();S.w.push(nw(d));MO=d.slice(0,7);srt();save();render()}
+ else if(a=="dw"){snap();S.w.splice(i,1);save();render();toast("Voafafa ny herinandro.","↶ Hanafoana",undo)}
+ else if(a=="al"){snap();S.w[i].l.push({t:"",m:15,w:""});save();render()}
+ else if(a=="af"){snap();S.w[i].f.push({t:"",m:3,w:""});save();render()}
+ else if(a=="df"){snap();S.w[i].f.splice(j,1);save();render();toast("Voafafa ny anjara.","↶ Hanafoana",undo)}
+ else if(a=="dl"){snap();S.w[i].l.splice(j,1);save();render();toast("Voafafa ny anjara.","↶ Hanafoana",undo)}
+ else if(a=="np"){var l=document.getElementById("pn").value.split(/[\n,;]+/).map(function(x){return x.trim()}).filter(Boolean);if(!l.length)return;snap();
+  var g0=document.getElementById("pg").value;l.forEach(function(n){if(!S.p.some(function(x){return x.toLowerCase()==n.toLowerCase()})){S.p.push(n);if(g0=="F")S.gd[n]="F"}});S.p.sort(function(a,b){return a.localeCompare(b)});save();render()}
+ else if(a=="dpp"){snap();delete S.x[S.p[i]];delete S.gd[S.p[i]];S.p.splice(i,1);save();render();toast("Voafafa ny olona.","↶ Hanafoana",undo)}
+});
+document.addEventListener("input",function(e){if(e.target.id=="ip")IT=e.target.value;else if(e.target.id=="iu")lss("fv-link",e.target.value);else if(e.target.id=="wu")lss("fv-worker",e.target.value)});
+document.addEventListener("change",function(e){var t=e.target,f=t.dataset.f;if(!f)return;var i=+t.dataset.i,v=t.value;
+ if(f=="imp"){impf(t);return}
+ else if(f=="ua"){if(!v)return;snap();(S.w[i].u=S.w[i].u||[]).push(v)}
+ else if(f=="mo"){if(v)MO=v}
+ else if(f=="d"){if(!v)return;S.w[i].d=mon(v);MO=S.w[i].d.slice(0,7);srt()}
+ else if(f=="v"){if(v=="__o"){var x=prompt("Soraty ny anarana:","");if(x===null){render();return}v=x.trim()}setp(S.w[i],t.dataset.k,v);var mk=/^f\.(\d+)\.w$/.exec(t.dataset.k);if(mk){var q2=S.w[i].f[+mk[1]];if(v&&gx(v)=="F")q2.s=true;if(q2.h&&v&&gx(q2.h)!=gx(v))q2.h=""}}
+ else if(f=="ch")S.c=v.trim();
+ else if(f=="fs"){snap();var q=S.w[i].f[+t.dataset.j];if(!t.checked&&q.w&&gx(q.w)=="F"){q.s=true;toast("Ny vehivavy dia tsy maintsy miaraka amin’ny vehivavy hafa.")}else{q.s=t.checked;if(!t.checked)q.h=""}}
+ else if(f=="fo"){snap();var q=S.w[i].f[+t.dataset.j];q.o=t.checked;if(q.o){q.s=false;q.h="";if(q.w&&gx(q.w)=="F")q.w=""}}
+ else if(f=="gd"){snap();var nm2=S.p[i];if(v=="F")S.gd[nm2]="F";else delete S.gd[nm2]}
+ else if(f=="el"){snap();var nm=S.p[i],k=t.dataset.k,L=(S.x[nm]||[]).filter(function(y){return y!=k});if(!t.checked)L.push(k);if(L.length)S.x[nm]=L;else delete S.x[nm]}
+ else if(f=="pn"){var old=S.p[i];v=v.trim();if(!v){render();return}S.w.forEach(function(w){sl(w).forEach(function(s){if(s[1][s[2]]==old)s[1][s[2]]=v});if(w.u)w.u=w.u.map(function(n){return n==old?v:n})});if(S.x[old]){S.x[v]=S.x[old];delete S.x[old]}if(S.gd[old]){S.gd[v]=S.gd[old];delete S.gd[old]}S.p[i]=v}
+ save();render()});
+render();
+try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().then(function(r){PS=r;if(V=="o")render()},function(){})}catch(e){}
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
+</script></body></html>

@@ -1,0 +1,13 @@
+FIVORIANA ANDAVANANDRO (PWA)
+1. Apetraho ny rakitra rehetra amin'ny site HTTPS (GitHub Pages, Netlify...).
+2. Sokafy amin'ny findainao, dia "Ampio amin'ny efijery fandraisana".
+3. "Olona sy fandrindrana": ampio ny anarana sy ny anaran'ny fiangonana.
+4. "Fandaharana": ⚡ Mamorona ny volana, ⚙ Zarao ho azy, dia 🖨 Atonta.
+Raha ovaina ny kinova, ovay ny V ao amin'ny sw.js.
+5. "Olona sy fandrindrana": ao koa ny backup (⬇/⬆). Alefaso matetika ny tahiry.
+6. Isaky ny herinandro: "Tsy eo" (olona tsy eo) sy "⛔ Tsy misy fivoriana". "📋 Dika lahatsoratra" ho an'ny WhatsApp. "Famintinana" mampiseho ny isan'ny anjara.
+7. "Fandaharana": 📥 Apetaho ny Taridalana. Dika ny lahatsoratry ny Taridalana ao amin'ny jw.org/mg (andalana misy ny daty ao anatin'izany), apetaho, dia "Ampidiro": voafeno ny lohateny sy ny minitra isaky ny herinandro. Tsy ovaina ny anarana efa voatendry.
+8. "Olona sy fandrindrana": fidio Lehilahy/Vehivavy isaky ny olona. Ny vehivavy dia Fampiofanana ihany no azony atao, miaraka amin'ny vehivavy hafa foana. Ao amin'ny anjara Fampiofanana, tick-o ny "Lehilahy ihany (lahateny)" raha anjara tsy azon'ny vehivavy atao. Ny lehilahy kosa miaraka amin'ny lehilahy raha misy mpanampy.
+9. Ao anatin'ny volana iray dia tsy mahazo anjara mitovy indroa ny olona iray (afa-tsy ny Mpamaky fehitsoratra). Ny lisitra tsy mampiseho ny efa nahazo, ary ny "Zarao ho azy" dia mihaja izany ihany koa. Raha tsy ampy olona dia avela foana ny anjara.
+10. Raha mihoatra ny 30 andro ny backup farany (na tsy mbola nisy), dia misy fampatsiahivana ambony. Mangataka fiarovana amin'ny fanadiovana ho azy ny browser ny app ihany koa.
+11. Ao amin'ny app: tab "❓ Toro-lalana" dia manazava ny fampiasana rehetra ho an'ny olon-kafa.
