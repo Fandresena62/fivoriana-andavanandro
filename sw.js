@@ -1,5 +1,5 @@
 // Ovay ity laharana ity isaky ny manova ny app (ohatra "v16") mba hohavaozina ny findainao.
-var V = "v23";
+var V = "v24";
 var CACHE = "fivoriana-" + V;
 var FILES = [
   "./",
