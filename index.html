@@ -24,7 +24,7 @@ input:focus,select:focus{outline:2px solid var(--acc);outline-offset:1px}
 .sec{padding:7px 12px;color:#fff;font-weight:700;font-size:13px;letter-spacing:.3px}.s1{background:var(--s1)}.s2{background:var(--s2)}.s3{background:var(--s3)}
 .r{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line)}
 .r:last-child{border-bottom:0}.rt{flex:1 1 100%;font-weight:600}input.rt{border-color:transparent;background:transparent;padding:4px 2px}input.rt:hover{border-color:var(--line)}
-.mn{width:62px;text-align:center}.mu{color:var(--mut);font-size:13px}.r select{flex:1;min-width:130px}
+.r select.rl{flex:0 0 118px;min-width:105px}.mn{width:62px;text-align:center}.mu{color:var(--mut);font-size:13px}.r select{flex:1;min-width:130px}
 .r select.dp{border-color:#e0a800;background:#fff6dc;color:#5c4400}
 .ft{padding:8px 12px;border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap}
 .ek{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--mut)}.ek label{display:flex;gap:4px;align-items:center}.ek input{min-height:0;width:auto}
@@ -60,7 +60,7 @@ table.pgt{width:100%;border-collapse:collapse}.pgt>thead{display:table-header-gr
 .pm{text-align:center;padding-left:3px!important;padding-right:3px!important}
 .pm span{display:inline-block;background:#e3e9f3;color:#1f3a5f;border-radius:10px;padding:1px 7px;font-size:11.5px;font-weight:700;white-space:nowrap}
 .pn{text-align:center;font-weight:700;text-transform:uppercase;color:#10243f;border-left:3px solid #c5cfe0;font-size:12.5px;padding-left:10px!important}
-.pn:empty::after{content:"—";font-weight:400;color:#999}
+.pn .pr{line-height:1.4}.pn .pr small{font-weight:400;text-transform:none;color:#5a6a85;font-size:11px}.pn:empty::after{content:"—";font-weight:400;color:#999}
 }
 </style></head><body>
 <div id="ui"></div><div id="out"></div>
@@ -90,6 +90,7 @@ function iso(d){return d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate()
 function mon(i){var d=dt(i);d.setDate(d.getDate()-(d.getDay()+6)%7);return iso(d)}
 function rng(i){var a=dt(i),b=dt(i);b.setDate(b.getDate()+6);
  return a.getMonth()==b.getMonth()?a.getDate()+" - "+b.getDate()+" "+MG[a.getMonth()].toUpperCase():a.getDate()+" "+AB[a.getMonth()]+" - "+b.getDate()+" "+MG[b.getMonth()].toUpperCase()}
+function rl(x){return x.r||(x.o?"Tompon’anjara":"Mpianatra")}
 function nw(d){return {d:d,ch:"",a:{t:"",m:10,w:""},g:{m:10,w:""},k:{t:"",m:4,w:""},f:[{t:"",m:3,w:""},{t:"",m:3,w:""},{t:"",m:4,w:""}],l:[{t:"",m:15,w:""}],b:{m:30,w:"",r:""},v:""}}
 function srt(){S.w.sort(function(a,b){return a.d<b.d?-1:a.d>b.d?1:0})}
 function inM(w){return w.d.slice(0,7)==MO}
@@ -116,6 +117,7 @@ function sel(v,a,w,t,g){var o='<option value="">— Fidio —</option>',f=0;
  var ab=v&&(w.u||[]).indexOf(v)>=0,bad=v&&(!ok(v,t)||(g&&gx(v)!=g)),du=v&&ppl(w).filter(function(x){return x==v}).length>1,rp=v&&cm(v,t,w)>1;
  return '<select '+a+(ab||bad?' class="wn" title="'+(ab?'Voalaza fa tsy eo amin’ity herinandro ity':'Tsy mety amin’ity anjara ity (tsy mbola mahazo, lahy/vavy tsy mitovy, na anjara ho an’ny lehilahy)')+'"':du||rp?' class="dp" title="'+(du?'Efa manana anjara hafa amin’ity herinandro ity':'Efa nahazo anjara mitovy amin’ity volana ity')+'"':'')+'>'+o+'<option value="__o">✎ Hafa…</option></select>'}
 function F(i,k){return 'data-f="v" data-i="'+i+'" data-k="'+k+'"'}
+function rsel(i,k,v){var R=["Mpianatra","Mpitarika","Tompon’anjara"],o="";if(R.indexOf(v)<0)R.push(v);R.forEach(function(a){o+="<option"+(a==v?" selected":"")+">"+esc(a)+"</option>"});return '<select class="rl" '+F(i,k)+">"+o+'<option value="__o">✎ Hafa (soraty)…</option></select>'}
 function mn(i,k,m){return '<input class="mn" type="number" min="1" inputmode="numeric" '+F(i,k)+' value="'+(m||"")+'"><span class="mu">min</span>'}
 function zc(w,i){return '<div class="wk"><div class="wh"><b>Herinandron’ny '+rng(w.d)+'</b><input type="date" data-f="d" data-i="'+i+'" value="'+w.d+'" aria-label="Daty"><button class="x" data-a="dw" data-i="'+i+'" title="Manala herinandro">✕</button></div><div class="r"><input class="rt" '+F(i,"zn")+' placeholder="Tsy misy fivoriana — antony (ohatra: Fivoriambe)…" value="'+esc(w.zn)+'"><button data-a="zz" data-i="'+i+'">↺ Averina ny fivoriana</button></div></div>'}
 function ur(w,i){var u=w.u||[],o='<option value="">＋ Ampio…</option>';S.p.forEach(function(n){if(u.indexOf(n)<0)o+='<option>'+esc(n)+'</option>'});
@@ -129,7 +131,7 @@ function wc0(w,i){
  '<div class="r"><div class="rt">2. Vatosoa ara-panahy</div>'+mn(i,"g.m",w.g.m)+sel(w.g.w,F(i,"g.w"),w,"g")+'</div>'+
  '<div class="r"><input class="rt" '+F(i,"k.t")+' placeholder="3. Famakiana Baiboly — andininy (ohatra: Je 40:1-10)" value="'+esc(w.k.t)+'">'+mn(i,"k.m",w.k.m)+sel(w.k.w,F(i,"k.w"),w,"k")+'</div>'+
  '<div class="sec s3">Fampiofanana amin’ny Fanompoana</div>';
- w.f.forEach(function(x,j){h+='<div class="r"><input class="rt" '+F(i,"f."+j+".t")+' placeholder="'+(4+j)+'. Lohatenin’ny anjara (ohatra: Miresadresaha Aloha)…" value="'+esc(x.t)+'">'+mn(i,"f."+j+".m",x.m)+sel(x.w,F(i,"f."+j+".w"),w,x.o?"fo":"f")+(x.s&&!x.o?'<span class="mu">mpanampy:</span>'+sel(x.h,F(i,"f."+j+".h"),w,"fh",x.w?gx(x.w):""):'')+'<div class="ek"><label><input type="checkbox" data-f="fo" data-i="'+i+'" data-j="'+j+'"'+(x.o?' checked':'')+'> Lehilahy ihany (lahateny)</label><label><input type="checkbox" data-f="fs" data-i="'+i+'" data-j="'+j+'"'+(x.s?' checked':'')+(x.o?' disabled':'')+'> Misy mpanampy</label></div>'+(w.f.length>1?'<button class="x" data-a="df" data-i="'+i+'" data-j="'+j+'" title="Manala anjara">✕</button>':'')+'</div>'});
+ w.f.forEach(function(x,j){h+='<div class="r"><input class="rt" '+F(i,"f."+j+".t")+' placeholder="'+(4+j)+'. Lohatenin’ny anjara (ohatra: Miresadresaha Aloha)…" value="'+esc(x.t)+'">'+mn(i,"f."+j+".m",x.m)+rsel(i,"f."+j+".r",rl(x))+sel(x.w,F(i,"f."+j+".w"),w,x.o?"fo":"f")+(x.s&&!x.o?'<span class="mu">mpanampy:</span>'+sel(x.h,F(i,"f."+j+".h"),w,"fh",x.w?gx(x.w):""):'')+'<div class="ek"><label><input type="checkbox" data-f="fo" data-i="'+i+'" data-j="'+j+'"'+(x.o?' checked':'')+'> Lehilahy ihany (lahateny)</label><label><input type="checkbox" data-f="fs" data-i="'+i+'" data-j="'+j+'"'+(x.s?' checked':'')+(x.o?' disabled':'')+'> Misy mpanampy</label></div>'+(w.f.length>1?'<button class="x" data-a="df" data-i="'+i+'" data-j="'+j+'" title="Manala anjara">✕</button>':'')+'</div>'});
  h+='<div class="sec s2">Ny Fiainantsika Kristianina</div>';
  w.l.forEach(function(x,j){h+='<div class="r"><input class="rt" '+F(i,"l."+j+".t")+' placeholder="'+(4+w.f.length+j)+'. Lohatenin’ny anjara…" value="'+esc(x.t)+'">'+mn(i,"l."+j+".m",x.m)+sel(x.w,F(i,"l."+j+".w"),w,"l")+(w.l.length>1?'<button class="x" data-a="dl" data-i="'+i+'" data-j="'+j+'" title="Manala anjara">✕</button>':'')+'</div>'});
  return h+'<div class="r"><div class="rt">'+(4+w.f.length+w.l.length)+'. Fianarana Baiboly</div>'+mn(i,"b.m",w.b.m)+sel(w.b.w,F(i,"b.w"),w,"b")+'</div>'+
@@ -138,10 +140,11 @@ function wc0(w,i){
  ur(w,i)+'<div class="ft"><button data-a="af" data-i="'+i+'">＋ Anjara Fampiofanana</button><button data-a="al" data-i="'+i+'">＋ Anjara Fiainantsika</button><button data-a="zz" data-i="'+i+'">⛔ Tsy misy fivoriana</button></div></div>'}
 function pw(w){var R="<small>HERINANDRO</small><b>"+rng(w.d)+"</b>";
  if(w.z)return '<section class="pw pz"><div class="ph"><div>'+R+'</div><div class="pc"><i>'+esc(w.zn||"Tsy misy fivoriana")+'</i></div></div></section>';
+ function Lf(t,x){var n=x.w,h=(x.s&&!x.o)?x.h:"",c="";if(n)c+='<div class="pr"><small>'+esc(rl(x))+':</small> '+esc(n)+'</div>';if(h)c+='<div class="pr"><small>Mpanampy:</small> '+esc(h)+'</div>';return '<tr><td class="pt">'+t+'</td><td class="pm">'+(x.m?'<span>'+x.m+' min</span>':'')+'</td><td class="pn">'+c+'</td></tr>'}
  function L(t,m,n,h){return '<tr><td class="pt">'+t+'</td><td class="pm">'+(m?'<span>'+m+' min</span>':'')+'</td><td class="pn">'+esc(n)+(h?' / '+esc(h):'')+'</td></tr>'}
  return '<section class="pw"><div class="ph"><div>'+R+'</div><div class="pc"><small>MPITARI-DRAHARAHA</small><b>'+esc(w.ch||"—")+'</b></div></div><table><colgroup><col style="width:38%"><col style="width:66px"><col></colgroup>'+
  '<tr><th colspan="3" class="s1">Harena avy ao amin’ny Tenin’Andriamanitra</th></tr>'+L("1. "+(esc(w.a.t)||"—"),w.a.m,w.a.w)+L("2. Vatosoa ara-panahy",w.g.m,w.g.w)+L("3. Famakiana Baiboly"+(w.k.t?" — "+esc(w.k.t):""),w.k.m,w.k.w)+
- '<tr><th colspan="3" class="s3">Fampiofanana amin’ny Fanompoana</th></tr>'+w.f.map(function(x,j){return L((4+j)+". "+(esc(x.t)||"—"),x.m,x.w,x.s?x.h:"")}).join("")+
+ '<tr><th colspan="3" class="s3">Fampiofanana amin’ny Fanompoana</th></tr>'+w.f.map(function(x,j){return Lf((4+j)+". "+(esc(x.t)||"—"),x)}).join("")+
  '<tr><th colspan="3" class="s2">Ny Fiainantsika Kristianina</th></tr>'+w.l.map(function(x,j){return L((4+w.f.length+j)+". "+(esc(x.t)||"—"),x.m,x.w)}).join("")+L((4+w.f.length+w.l.length)+". Fianarana Baiboly",w.b.m,w.b.w)+L("Mpamaky fehitsoratra",0,w.b.r)+L("Vavaka",0,w.v)+'</table></section>'}
 var IMP=false,IT="";
 var MX=[["jan",0],["feb",1],["mar",2],["apr",3],["mey",4],["may",4],["jon",5],["jun",5],["jol",6],["jul",6],["aog",7],["aug",7],["sep",8],["okt",9],["oct",9],["nov",10],["des",11],["dec",11]];
@@ -181,7 +184,7 @@ function applyWB(ws){snap();var add=0,upd=0;
   if(c.a){w.a.t=c.a.t;w.a.m=c.a.m}
   if(c.g)w.g.m=c.g.m;
   if(c.k){if(c.k.k)w.k.t=c.k.k;w.k.m=c.k.m}
-  if(c.f.length)w.f=c.f.map(function(p,j){var o=w.f[j]||{},x={t:p.t,m:p.m,w:o.w||""};if(/lahateny/i.test(p.t))x.o=true;else if(o.s){x.s=o.s;x.h=o.h||""}return x});
+  if(c.f.length)w.f=c.f.map(function(p,j){var o=w.f[j]||{},x={t:p.t,m:p.m,w:o.w||""};if(o.r)x.r=o.r;if(/lahateny/i.test(p.t))x.o=true;else if(o.s){x.s=o.s;x.h=o.h||""}return x});
   if(c.l.length)w.l=c.l.map(function(p,j){var o=w.l[j]||{};return {t:p.t,m:p.m,w:o.w||""}});
   if(c.b)w.b.m=c.b.m});
  srt();if(!ws.some(function(c){return c.d.slice(0,7)==MO}))MO=ws[0].d.slice(0,7);
@@ -310,8 +313,9 @@ function render(){
 }
 function txt(){var o='*FIVORIANA ANDAVANANDRO*\n'+(S.c?S.c+'\n':'')+'*'+MG[+MO.slice(5)-1].toUpperCase()+' '+MO.slice(0,4)+'*\n';
  function L(t,m,n,h){return '• '+t+(m?' ('+m+' min)':'')+': '+(n||'—')+(h?' / '+h:'')+'\n'}
+ function Lf(t,x){var h=(x.s&&!x.o)?x.h:'';return '• '+t+(x.m?' ('+x.m+' min)':'')+'\n'+'    '+rl(x)+': '+(x.w||'—')+'\n'+(h?'    Mpanampy: '+h+'\n':'')}
  S.w.forEach(function(w){if(!inM(w))return;o+='\n📅 *Herinandron’ny '+rng(w.d)+'*\n';if(w.z){o+=(w.zn||'Tsy misy fivoriana')+'\n';return}
-  o+='Mpitari-draharaha: '+(w.ch||'—')+'\n\n*Harena avy ao amin’ny Tenin’Andriamanitra*\n'+L('1. '+(w.a.t||'—'),w.a.m,w.a.w)+L('2. Vatosoa ara-panahy',w.g.m,w.g.w)+L('3. Famakiana Baiboly'+(w.k.t?' — '+w.k.t:''),w.k.m,w.k.w)+'\n*Fampiofanana amin’ny Fanompoana*\n'+w.f.map(function(x,j){return L((4+j)+'. '+(x.t||'—'),x.m,x.w,x.s?x.h:'')}).join('')+'\n*Ny Fiainantsika Kristianina*\n'+w.l.map(function(x,j){return L((4+w.f.length+j)+'. '+(x.t||'—'),x.m,x.w)}).join('')+L((4+w.f.length+w.l.length)+'. Fianarana Baiboly',w.b.m,w.b.w)+L('Mpamaky fehitsoratra',0,w.b.r)+L('Vavaka',0,w.v)});
+  o+='Mpitari-draharaha: '+(w.ch||'—')+'\n\n*Harena avy ao amin’ny Tenin’Andriamanitra*\n'+L('1. '+(w.a.t||'—'),w.a.m,w.a.w)+L('2. Vatosoa ara-panahy',w.g.m,w.g.w)+L('3. Famakiana Baiboly'+(w.k.t?' — '+w.k.t:''),w.k.m,w.k.w)+'\n*Fampiofanana amin’ny Fanompoana*\n'+w.f.map(function(x,j){return Lf((4+j)+'. '+(x.t||'—'),x)}).join('')+'\n*Ny Fiainantsika Kristianina*\n'+w.l.map(function(x,j){return L((4+w.f.length+j)+'. '+(x.t||'—'),x.m,x.w)}).join('')+L((4+w.f.length+w.l.length)+'. Fianarana Baiboly',w.b.m,w.b.w)+L('Mpamaky fehitsoratra',0,w.b.r)+L('Vavaka',0,w.v)});
  return o}
 function cp(){if(!S.w.some(inM)){toast("Tsy misy herinandro amin’ity volana ity.");return}var t=txt();
  function fb(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");toast("Voadika ny lahatsoratra.")}catch(e){toast("Tsy afaka nandika.")}a.remove()}
@@ -358,7 +362,7 @@ document.addEventListener("change",function(e){var t=e.target,f=t.dataset.f;if(!
  else if(f=="ua"){if(!v)return;snap();(S.w[i].u=S.w[i].u||[]).push(v)}
  else if(f=="mo"){if(v)MO=v}
  else if(f=="d"){if(!v)return;S.w[i].d=mon(v);MO=S.w[i].d.slice(0,7);srt()}
- else if(f=="v"){if(v=="__o"){var x=prompt("Soraty ny anarana:","");if(x===null){render();return}v=x.trim()}setp(S.w[i],t.dataset.k,v);var mk=/^f\.(\d+)\.w$/.exec(t.dataset.k);if(mk){var q2=S.w[i].f[+mk[1]];if(v&&gx(v)=="F")q2.s=true;if(q2.h&&v&&gx(q2.h)!=gx(v))q2.h=""}}
+ else if(f=="v"){if(v=="__o"){var x=prompt(/\.r$/.test(t.dataset.k)?"Soraty ny anjara (ohatra: Mpitarika):":"Soraty ny anarana:","");if(x===null){render();return}v=x.trim()}setp(S.w[i],t.dataset.k,v);var mk=/^f\.(\d+)\.w$/.exec(t.dataset.k);if(mk){var q2=S.w[i].f[+mk[1]];if(v&&gx(v)=="F")q2.s=true;if(q2.h&&v&&gx(q2.h)!=gx(v))q2.h=""}}
  else if(f=="ch")S.c=v.trim();
  else if(f=="fs"){snap();var q=S.w[i].f[+t.dataset.j];if(!t.checked&&q.w&&gx(q.w)=="F"){q.s=true;toast("Ny vehivavy dia tsy maintsy miaraka amin’ny vehivavy hafa.")}else{q.s=t.checked;if(!t.checked)q.h=""}}
  else if(f=="fo"){snap();var q=S.w[i].f[+t.dataset.j];q.o=t.checked;if(q.o){q.s=false;q.h="";if(q.w&&gx(q.w)=="F")q.w=""}}
