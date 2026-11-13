@@ -93,9 +93,9 @@ function rng(i){var a=dt(i),b=dt(i);b.setDate(b.getDate()+6);
 function rg(w){return rng(w.d).replace(/[A-ZÀ-Ý]{3,}/g,function(m){return m.charAt(0)+m.slice(1).toLowerCase()})}
 function tn(n){return (S.tel&&S.tel[n]||"").replace(/[^\d+]/g,"")}
 function wn(n){var t=tn(n).replace(/^\+/,"");if(t.indexOf("00")==0)t=t.slice(2);else if(t.charAt(0)=="0")t="261"+t.slice(1);return t}
-function cmsg(w,x,who){var o=who=="h"?x.w:(x.s&&!x.o?x.h:"");return "Salama! Manana anjara ianao amin’ny "+rg(w)+". Eo amin’ilay hoe: "+(x.t||"Anjara Fampiofanana")+(x.m?" ("+x.m+" min)":"")+(o?", miaraka amin’i "+o:"")+". Misaotra!"}
+function cmsg(w,x,who,j){var o=who=="h"?x.w:(x.s&&!x.o?x.h:"");return "Salama! Manana anjara ianao amin’ny "+rg(w)+". Eo amin’ilay hoe: "+(4+j)+". "+(x.t||"Anjara Fampiofanana")+(x.m?" ("+x.m+" min)":"")+(o?", miaraka amin’i "+o:"")+". Misaotra!"}
 function ct(w,j,who,c){var x=w.f[j];if(!x)return;var n=who=="h"?x.h:x.w;if(!n)return;if(!tn(n)){toast("Soraty aloha ny laharan’i "+n+" ao amin’ny “Olona sy fandrindrana”.");return}
- var m=cmsg(w,x,who);if(c=="wa"){window.open("https://wa.me/"+wn(n)+"?text="+encodeURIComponent(m),"_blank");return}
+ var m=cmsg(w,x,who,j);if(c=="wa"){window.open("https://wa.me/"+wn(n)+"?text="+encodeURIComponent(m),"_blank");return}
  location.href=c=="sms"?"sms:"+tn(n)+"?&body="+encodeURIComponent(m):"tel:"+tn(n)}
 function cb(i,j,who,n){if(!n)return "";var a=' data-a="ct" data-i="'+i+'" data-j="'+j+'" data-p="'+who+'" data-c="';return '<div class="ct"><span>'+esc(n)+':</span><button'+a+'wa">WhatsApp</button><button'+a+'sms">SMS</button><button'+a+'tel">Antso</button></div>'}
 function rl(x){return x.r||(x.o?"Tompon’anjara":"Mpianatra")}
